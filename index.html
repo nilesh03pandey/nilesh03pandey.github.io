@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilesh Pandey - AI/ML Enthusiast & Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #0c0c0c, #1a1a2e); color: #fff; overflow-x: hidden; }
+        header { position: relative; height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>'); display: flex; align-items: center; justify-content: center; text-align: center; }
+        .github-corner { position: absolute; top: 0; right: 0; }
+        .github-corner:hover .octo-arm { animation: octocat-wave 560ms ease-in-out; }
+        @keyframes octocat-wave { 0%, 100% { transform: rotate(0); } 20%, 60% { transform: rotate(-25deg); } 40%, 80% { transform: rotate(10deg); } }
+        @keyframes octocat-wave { 0%, 100% { transform: rotate(0); } 20%, 60% { transform: rotate(-25deg); } 40%, 80% { transform: rotate(10deg); } } @media (max-width:500px){.github-corner:hidden}
+        h1 { font-size: 3em; margin: 0; animation: fadeInUp 1s ease; }
+        p { font-size: 1.2em; animation: fadeInUp 1s ease 0.2s both; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+        h2 { text-align: center; font-size: 2.5em; margin-bottom: 40px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .project-card { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; transition: transform 0.3s, box-shadow 0.3s; }
+        .project-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,255,255,0.5); }
+        .skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .skill-bar { width: 200px; background: rgba(255,255,255,0.2); height: 10px; border-radius: 5px; overflow: hidden; margin: 5px 0; }
+        .skill-progress { height: 100%; background: linear-gradient(90deg, #00ff88, #00bfff); transition: width 2s ease-in-out; }
+        /* Particle Background JS Effect */
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+        a { color: #00bfff; text-decoration: none; }
+        footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/nilesh03pandey" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" fill="currentColor"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,97.8 C149.3,95.2 158.0,91.5 165.3,89.3 C168.5,88.2 170.5,87.4 172.8,86.6 C177.4,84.5 180.9,83.0 184.2,82.8 C187.9,82.6 191.8,82.4 195.8,82.2 C216.6,79.0 221.0,70.5 221.0,70.5 C221.0,70.5 225.5,72.6 225.5,72.6 C225.5,72.6 227.3,77.6 227.3,77.6 C227.3,77.6 228.0,83.4 228.0,83.4 C228.0,83.4 227.7,89.4 227.7,89.4 C227.7,89.4 227.0,95.4 227.0,95.4 C227.0,95.4 226.3,101.4 226.3,101.4 C226.3,101.4 225.6,107.4 225.6,107.4 C225.6,107.4 224.9,113.4 224.9,113.4 C224.9,113.4 224.2,119.4 224.2,119.4 C224.2,119.4 223.5,125.4 223.5,125.4 C223.5,125.4 222.8,131.4 222.8,131.4 C222.8,131.4 222.1,137.4 222.1,137.4 C222.1,137.4 221.4,143.4 221.4,143.4 C221.4,143.4 220.7,149.4 220.7,149.4 C220.7,149.4 220.0,155.4 220.0,155.4 C220.0,155.4 219.3,161.4 219.3,161.4 C219.3,161.4 218.6,167.4 218.6,167.4 C218.6,167.4 217.9,173.4 217.9,173.4 C217.9,173.4 217.2,179.4 217.2,179.4 C217.2,179.4 216.5,185.4 216.5,185.4 C216.5,185.4 215.8,191.4 215.8,191.4 C215.8,191.4 215.1,197.4 215.1,197.4 C215.1,197.4 214.4,203.4 214.4,203.4 C214.4,203.4 213.7,209.4 213.7,209.4 C213.7,209.4 213.0,215.4 213.0,215.4 C213.0,215.4 212.3,221.4 212.3,221.4 C212.3,221.4 211.6,227.4 211.6,227.4" fill="currentColor" class="octo-body"></path></svg></a>
+    <header>
+        <div>
+            <h1>Nilesh Pandey</h1>
+            <p>AI/ML Innovator | B.Tech CSE | Passionate about Distributed Systems & Cybersecurity</p>
+            <a href="https://github.com/nilesh03pandey"><i class="fab fa-github"></i> GitHub</a> | pandeynilesh325a@gmail.com | 9026468481
+        </div>
+    </header>
+    <canvas id="particles"></canvas>
+    <section id="education">
+        <h2>Education</h2>
+        <p>B.Tech CSE, Vellore Institute of Technology | CGPA: 7.61 | 2022-2026</p>
+    </section>
+    <section id="experience">
+        <h2>Experience</h2>
+        <p><strong>AI Intern, Prxis Tech Solutions</strong> (Apr-Jul 2025): Engineered scalable RAG with Meta Llama 3 8B, FAISS, Sentence Transformers – 40% latency reduction, cloud-ready for 10K+ queries/day.</p>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Twitter-Based Mental Health Crisis Detection</h3>
+                <p>Distributed NLP pipeline analyzing 42M tweets: Selenium scraping, NLTK/RegEx preprocessing, VADER sentiment, Plotly viz. Batch processing reduced analysis time by 50%. <a href="https://github.com/nilesh03pandey/x_data_analysis">View Repo & README</a> | <a href="https://huggingface.co/Nilesh213/x_data.csv">Dataset on HF</a></p>
+            </div>
+            <div class="project-card">
+                <h3>AI-Based Symptom Detector</h3>
+                <p>Fine-tuned Mistral 7B with FAISS/Sentence Transformers; modular NLP & API retrieval. 97% accuracy on 1K+ cases. Ties to IIC 2024 medical assistant. <a href="https://github.com/nilesh03pandey/International_innovation_chellange_2024_vaidyan">View Repo & README</a> | <a href="https://huggingface.co/Nilesh213/vaidyan_final">Model on HF</a></p>
+            </div>
+            <div class="project-card">
+                <h3>Web-Based Facial Authentication with Anti-Spoofing</h3>
+                <p>TensorFlow/OpenCV/MediaPipe system replacing CAPTCHAs; custom CNN for anti-spoofing, SSL security. 98% accuracy, 85% spoofing drop. (Repo private – contact for details)</p>
+            </div>
+        </div>
+    </section>
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <p>Grand Finalist & 1st in Healthcare, IIC 2024: Top 10/764 teams; 48-hour AI medical assistant with Mistral 7B RAG for symptom diagnosis.</p>
+    </section>
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills">
+            <div>Python <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
+            <div>ML/AI (TensorFlow, PyTorch) <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div></div>
+            <div>NLP/LLMs <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
+            <!-- Add more as needed -->
+        </div>
+    </section>
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Data Science Professional - Oracle</li>
+            <li>Generative AI - IBM</li>
+            <li>Certified Ethical Hacker (CEH v12) - EC-Council</li>
+            <!-- Add links if available -->
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2025 Nilesh Pandey | <a href="https://github.com/nilesh03pandey">GitHub</a> | Let's connect!</p>
+    </footer>
+    <script>
+        // Particle Animation for Innovation
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+        for(let i=0; i<100; i++) { particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)/5, vy: (Math.random()-0.5)/5}); }
+        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>canvas.width) p.vx*=-1; if(p.y<0||p.y>canvas.height) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,1,0,Math.PI*2); ctx.fillStyle='rgba(0,191,255,0.5)'; ctx.fill(); }); requestAnimationFrame(animate); }
+        animate();
+        // Animate Skills on Scroll
+        window.addEventListener('scroll', () => { document.querySelectorAll('.skill-progress').forEach(bar => bar.style.width = bar.style.width || '0%'); });
+    </script>
+</body>
+</html>
