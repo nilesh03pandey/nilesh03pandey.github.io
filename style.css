@@ -31,34 +31,121 @@ header {
     color: #8b4dff; /* Change to your desired color, e.g., red */
 }
 
+/* =============================
+   EDUCATION SECTION (DARK THEME)
+============================= */
 .education-section {
-    padding: 20px 20px;
-    max-width: 1200px;
+    padding: 20px;
+    max-width: 1000px;
     margin: auto;
-    text-align: center;
+    text-align: left;
 }
+
 .education-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 .education-item {
     font-size: 1.2em;
-    margin: 10px 0;
+    padding: 2%;
+    border-radius: 5px;
+    margin: 15px 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
     animation: fadeInUp 1s ease both;
+    transition: background-color 0.3s ease;
 }
 
-.education-item:nth-child(2) { animation-delay: 0.2s; }
-.education-item:nth-child(3) { animation-delay: 0.4s; }
+.education-item:hover {
+    background-color: #f7f7f721;
+    cursor: pointer;
+}
+
+.edu-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edu-main strong {
+    flex: 2;
+}
+
+.edu-percentage {
+    flex: 1;
+    text-align: center;
+    min-width: 150px;
+}
+
+.edu-year {
+    flex: 1;
+    text-align: right;
+    min-width: 150px;
+}
+
+.edu-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    margin-top: 8px;
+    padding-left: 15px;
+    font-size: 0.9em;
+}
+
+.expandable:hover .edu-details {
+    max-height: 300px; /* big enough to fit the list */
+    opacity: 1;
+}
+
+.edu-details ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.edu-details li {
+    padding: 2px 0;
+}
+
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+
+
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .edu-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .edu-main strong {
+        font-size: 1.1em;
+    }
+
+    .edu-main span {
+        font-size: 0.9em;
+    }
+}
+/*
+
+Prevents layout shift during animation
 .number {
     display: inline-block;
-    min-width: 50px; /* Prevents layout shift during animation */
+    min-width: 50px; 
     text-align: left;
-}
+} 
+*/
 @keyframes octocat-wave {
     0%, 100% { transform: rotate(0); }
     20%, 60% { transform: rotate(-25deg); }
