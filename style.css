@@ -284,3 +284,336 @@ canvas#particles {
     z-index: -1;
     background: transparent;
 }
+
+
+/* PDF Embed Styling */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0c0c0c, #1a1a2e);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+header {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.github-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+.pipe {
+    color: #8b4dff;
+}
+
+/* =============================
+   EDUCATION SECTION (DARK THEME)
+============================= */
+.education-section {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    text-align: left;
+}
+
+.education-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.education-item {
+    font-size: 1.2em;
+    padding: 2%;
+    border-radius: 5px;
+    margin: 15px 0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    animation: fadeInUp 1s ease both;
+    transition: background-color 0.3s ease;
+}
+
+.education-item:hover {
+    background-color: #f7f7f721;
+    cursor: pointer;
+}
+
+.edu-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edu-main strong {
+    flex: 2;
+}
+
+.edu-percentage {
+    flex: 1;
+    text-align: center;
+    min-width: 150px;
+}
+
+.edu-year {
+    flex: 1;
+    text-align: right;
+    min-width: 150px;
+}
+
+.edu-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    margin-top: 8px;
+    padding-left: 15px;
+    font-size: 0.9em;
+}
+
+.expandable:hover .edu-details {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.edu-details ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.edu-details li {
+    padding: 2px 0;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .edu-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .edu-main strong {
+        font-size: 1.1em;
+    }
+
+    .edu-main span {
+        font-size: 0.9em;
+    }
+}
+
+@keyframes octocat-wave {
+    0%, 100% { transform: rotate(0); }
+    20%, 60% { transform: rotate(-25deg); }
+    40%, 80% { transform: rotate(10deg); }
+}
+
+@media (max-width: 500px) {
+    .github-corner {
+        display: none;
+    }
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+    animation: fadeInUp 1s ease;
+}
+
+p {
+    font-size: 1.2em;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.5);
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.skill-bar {
+    width: 200px;
+    background: rgba(255,255,255,0.2);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff88, #00bfff);
+    transition: width 2s ease-in-out;
+}
+
+canvas {
+    position: fixed;
+    max-width: fit-content;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* Add styles for the cursor sparkle effect */
+.cursor-sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.8) 20%, transparent 80%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: sparkle 0.6s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Canvas styling for better integration */
+canvas#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: transparent;
+}
+
+/* PDF Embed Styling */
+.pdf-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pdf-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,255,255,0.3);
+}
+
+.pdf-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #1a1a2e;
+}
+
+.pdf-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+    pointer-events: none;
+}
+
+/* Experience Section Credits Animation */
+.experience-text {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.experience-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ensure the experience section has enough space for scrolling effect */
+#experience {
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    .pdf-container {
+        border-color: rgba(255,255,255,0.2);
+    }
+    .pdf-container::after {
+        background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+    }
+}
