@@ -563,9 +563,9 @@ footer {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0; /* Start hidden for transition */
+    opacity: 100; /* Start hidden for transition */
     transform: scale(1.05);
-    filter: blur(8px) brightness(0.3) contrast(1.2);
+    filter: blur(10%) brightness(1.5) contrast(1.6);
     transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
