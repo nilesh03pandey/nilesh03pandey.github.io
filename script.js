@@ -135,20 +135,3 @@ document.addEventListener('mousemove', createSparkle);
 document.addEventListener('touchmove', createSparkle);
 document.addEventListener('touchstart', createSparkle);
 
-// Live Date-Time Watch
-function updateClock() {
-    const now = new Date();
-
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateStr = now.toLocaleDateString('en-IN', options);
-
-    document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
-    document.getElementById('date').textContent = dateStr;
-}
-
-setInterval(updateClock, 1000);
-updateClock();

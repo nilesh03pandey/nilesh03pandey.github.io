@@ -1,88 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Display</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clock & Countdown</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        background: black;
+        color: #00ffcc;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        overflow: hidden;
+        animation: fadeIn 2s ease-in-out;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            background: black;
-            color: #00ffcc;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-            overflow: hidden;
-            animation: fadeIn 2s ease-in-out;
-        }
+    #time, #countdown {
+        font-size: 8vw;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-shadow: 0 0 25px #00ffcc, 0 0 60px #00ffcc;
+    }
 
-        #time {
-            font-size: 5vw;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-shadow: 0 0 25px #00ffcc, 0 0 60px #00ffcc;
-        }
+    .controls {
+        position: absolute;
+        bottom: 10vh;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-        #date {
-            font-size: 2vw;
-            font-weight: 200;
-            color: #aaa;
-            margin-top: 10px;
-            text-shadow: 0 0 15px #00ffcc;
-        }
+    button, input {
+        background: rgba(0, 255, 255, 0.1);
+        border: 1px solid #00ffcc;
+        color: #00ffcc;
+        font-family: 'Roboto', sans-serif;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    button:hover {
+        background: #00ffcc;
+        color: black;
+        box-shadow: 0 0 15px #00ffcc;
+    }
 
-        /* Optional neon border glow */
-        .glow-border {
-            position: absolute;
-            inset: 0;
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
-            pointer-events: none;
-            animation: pulse 4s ease-in-out infinite;
-        }
+    input[type="number"] {
+        width: 80px;
+        text-align: center;
+    }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
-            50% { box-shadow: 0 0 70px rgba(0, 255, 255, 0.8); }
-        }
-    </style>
+    .glow-border {
+        position: absolute;
+        inset: 0;
+        border: 2px solid rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+        pointer-events: none;
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
+        50% { box-shadow: 0 0 70px rgba(0, 255, 255, 0.8); }
+    }
+
+    @keyframes alarmFlash {
+        0%, 100% { background-color: black; }
+        50% { background-color: #ff0044; }
+    }
+</style>
 </head>
-
 <body>
-    <div class="glow-border"></div>
+<div class="glow-border"></div>
 
-    <div id="fullscreen-clock">
-        <div id="time"></div>
-        <div id="date"></div>
-    </div>
+<div id="fullscreen-clock">
+    <div id="time"></div>
+    <div id="countdown" style="display:none;"></div>
+</div>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
+<div class="controls">
+    <button id="showClock">Clock</button>
+    <button id="showCountdown">Countdown</button>
+    <input type="number" id="minutes" placeholder="Min" min="0">
+    <button id="startCountdown">Start</button>
+    <button id="stopAlarm" style="display:none;">Stop Alarm</button>
+</div>
 
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateStr = now.toLocaleDateString('en-IN', options);
+<audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
 
-            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
-            document.getElementById('date').textContent = dateStr;
+<script>
+let countdownInterval;
+let alarmTriggered = false;
+
+// Clock — only Hour:Minute
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0')
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Toggle views
+document.getElementById('showClock').addEventListener('click', () => {
+    document.getElementById('time').style.display = 'block';
+    document.getElementById('countdown').style.display = 'none';
+});
+
+document.getElementById('showCountdown').addEventListener('click', () => {
+    document.getElementById('time').style.display = 'none';
+    document.getElementById('countdown').style.display = 'block';
+});
+
+// Countdown
+document.getElementById('startCountdown').addEventListener('click', () => {
+    let mins = parseInt(document.getElementById('minutes').value) || 0;
+    let total = mins * 60;
+
+    if (total <= 0) return alert("Enter a valid time!");
+
+    clearInterval(countdownInterval);
+    document.body.style.animation = "fadeIn 2s ease-in-out";
+    alarmTriggered = false;
+    document.getElementById('stopAlarm').style.display = 'none';
+
+    countdownInterval = setInterval(() => {
+        const minutesLeft = Math.floor(total / 60);
+        const secondsLeft = total % 60;
+        document.getElementById('countdown').textContent =
+            `${String(minutesLeft).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
+
+        if (total <= 0 && !alarmTriggered) {
+            triggerAlarm();
+        } else if (total > 0) {
+            total--;
         }
+    }, 1000);
+});
 
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+// Alarm
+function triggerAlarm() {
+    alarmTriggered = true;
+    clearInterval(countdownInterval);
+    document.getElementById('alarmSound').play();
+    document.body.style.animation = "alarmFlash 1s infinite";
+    document.getElementById('stopAlarm').style.display = 'inline-block';
+}
+
+document.getElementById('stopAlarm').addEventListener('click', () => {
+    const alarmSound = document.getElementById('alarmSound');
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+    document.body.style.animation = "fadeIn 2s ease-in-out";
+    document.getElementById('stopAlarm').style.display = 'none';
+});
+</script>
 </body>
 </html>
