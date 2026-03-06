@@ -642,14 +642,18 @@
     display: block;
   }
 
-  /* ═══════════ CONTACT ═══════════ */
+  /* ═══════════ CONTACT — FIXED ═══════════ */
   #contact {
     padding: 6rem 2rem;
     flex-direction: column;
     text-align: center;
-    min-height: 60vh;
+    min-height: 70vh;
   }
-  .contact-inner { max-width: 700px; width: 100%; }
+  .contact-inner {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+  }
   .contact-lead {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(3rem, 8vw, 7rem);
@@ -662,28 +666,155 @@
     -webkit-text-stroke: 1px var(--magenta);
     font-style: normal;
   }
+
+  /* Quick-links row */
   .contact-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 2.5rem;
   }
   .contact-link {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 3px;
     color: var(--text);
     text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid rgba(200,216,232,0.2);
+    padding: 0.65rem 1.4rem;
+    border: 1px solid rgba(200,216,232,0.15);
     transition: all 0.3s;
     text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
   .contact-link:hover {
     color: var(--cyan);
     border-color: var(--cyan);
-    box-shadow: 0 0 20px rgba(0,245,255,0.2);
+    box-shadow: 0 0 20px rgba(0,245,255,0.15);
+    background: rgba(0,245,255,0.04);
+  }
+
+  /* Profile cards grid */
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3.5rem;
+  }
+  @media(max-width: 700px) {
+    .contact-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(max-width: 400px) {
+    .contact-cards { grid-template-columns: 1fr; }
+  }
+
+  .contact-profile-card {
+    background: rgba(10, 22, 40, 0.7);
+    border: 1px solid rgba(0,245,255,0.1);
+    padding: 1.75rem 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,245,255,0.04), transparent);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .contact-profile-card:hover::before { opacity: 1; }
+  .contact-profile-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 40px rgba(0,245,255,0.12), 0 0 0 1px rgba(0,245,255,0.08);
+  }
+
+  .cpc-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,245,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: rgba(0,245,255,0.06);
+    transition: all 0.35s;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .contact-profile-card:hover .cpc-avatar {
+    box-shadow: 0 0 20px rgba(0,245,255,0.3);
+  }
+  .cpc-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .cpc-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    color: rgba(200,216,232,0.35);
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+  }
+  .cpc-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 1px;
+    word-break: break-all;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .cpc-arrow {
+    font-size: 0.6rem;
+    color: rgba(0,245,255,0.3);
+    transition: all 0.3s;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 2px;
+  }
+  .contact-profile-card:hover .cpc-arrow {
+    color: var(--cyan);
+    transform: translateX(3px);
+  }
+
+  /* Footer line */
+  .contact-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0,245,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .contact-footer-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: rgba(200,216,232,0.25);
+    text-transform: uppercase;
+  }
+  .contact-footer-dot {
+    width: 3px; height: 3px;
+    background: rgba(0,245,255,0.3);
+    border-radius: 50%;
   }
 
   /* ═══════════ NAV ═══════════ */
@@ -776,14 +907,14 @@
 
 <!-- ═══ HERO ═══ -->
 <section id="hero">
-  <div class="hero-eyebrow">// AI Engineer · VIT 2026 · IIC Grand Finalist</div>
+  <div class="hero-eyebrow">// AI Engineer · RAG & LLM Systems · VIT 2026  </div>
   <div class="hero-name">
     <span class="line1 glitch" data-text="NILESH">NILESH</span>
     <span class="line2">PANDEY</span>
   </div>
   <p class="hero-subtitle">
     I build machines that <span>think</span>, systems that <span>learn</span>,<br>
-    and models that <span>understand</span> — at scale.
+    and models that <span>understand</span> - at scale.
   </p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View Work</a>
@@ -802,7 +933,7 @@
       <p class="about-text">
         B.Tech student at <strong>Vellore Institute of Technology</strong>, obsessed with
         building AI systems that solve real problems at massive scale.
-        From deploying RAG pipelines handling <strong>10,000+ daily queries</strong>
+        From deploying RAG pipelines handling <strong>1,000+ daily queries</strong>
         to fine-tuning LLMs for medical diagnosis with <strong>97% accuracy</strong> —
         I bridge research and production.
       </p>
@@ -831,6 +962,9 @@
           <div class="t-out">&nbsp;&nbsp;"specialization": [</div>
           <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"LLM Fine-tuning"</span>,</div>
           <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"RAG Systems"</span>,</div>
+          <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"Machine Learning"</span></div>
+          <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"Data Science"</span></div>
+          <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"Algorithms"</span></div>
           <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"Computer Vision"</span>,</div>
           <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-highlight">"NLP at Scale"</span></div>
           <div class="t-out">&nbsp;&nbsp;],</div>
@@ -923,7 +1057,7 @@
 
       <a href="https://drive.google.com/file/d/1mJxhA0Mm0xCC8vwNtNa7J6Lnpzqbnz8s/view" class="project-card reveal" style="transition-delay:0.3s; grid-column: 1 / -1; max-width: 100%;">
         <div class="project-tag">// LLM · RAG · Cloud Infra</div>
-        <div class="project-title" style="font-size:1.5rem">RAG System @ Prxis Tech — Production Grade</div>
+        <div class="project-title" style="font-size:1.5rem">Built a Multi agentic RAG System @ Prxis Tech - Production Grade</div>
         <div class="project-desc" style="max-width:600px">
           Engineered and deployed a scalable RAG system using Meta Llama 3 8B, 
           FAISS vector database, and Sentence Transformers. Reduced inference latency by 40%, 
@@ -966,8 +1100,8 @@
     </div>
 
     <div class="skills-grid reveal">
-      <span class="skill-pill hot">Meta Llama 3</span>
-      <span class="skill-pill hot">Mistral 7B</span>
+      <span class="skill-pill hot">LLMs</span>
+      <span class="skill-pill hot">SLMs</span>
       <span class="skill-pill hot">LangChain</span>
       <span class="skill-pill hot">FAISS</span>
       <span class="skill-pill hot">RAG Systems</span>
@@ -1046,12 +1180,12 @@
         <span class="gsb-label">Repositories</span>
       </div>
       <div class="github-stat-box">
-        <span class="gsb-val">AI</span>
+        <span class="gsb-val">AI · Ml · DS</span>
         <span class="gsb-label">Primary Domain</span>
       </div>
       <div class="github-stat-box">
         <span class="gsb-val">VIT</span>
-        <span class="gsb-label">Based · 2026</span>
+        <span class="gsb-label">Batch · 2026</span>
       </div>
     </div>
     <div class="github-streak reveal" style="margin-top:1.5rem; border:1px solid rgba(0,245,255,0.15); padding:0.5rem">
@@ -1071,18 +1205,93 @@
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="contact-inner reveal">
-    <div class="section-label">// 06 — Let's Build</div>
+    <div class="section-label" style="text-align:center">// 06 — Contact</div>
     <div class="contact-lead">
-      Let's build<br><em>something</em><br>impossible.
+      LET'S<br><em>CONNECT</em>
     </div>
-    <p style="font-family:'Share Tech Mono',monospace;font-size:0.8rem;color:rgba(200,216,232,0.5);letter-spacing:2px">
-      Open to full-time roles, research collaborations, and wild ideas.
+    <p class="about-text" style="max-width:480px;margin:0 auto;text-align:center;opacity:0.65;font-size:0.88rem">
+      Open to full-time roles, internships &amp; high-impact collaborations in AI &amp; ML.
     </p>
+
+    <!-- Quick link pills -->
     <div class="contact-links">
-      <a href="mailto:pandeynilesh325a@gmail.com" class="contact-link">Email</a>
-      <a href="https://github.com/nilesh03pandey" target="_blank" class="contact-link">GitHub</a>
-      <a href="https://linkedin.com/in/nilesh-pandey-ai-sec/" target="_blank" class="contact-link">LinkedIn</a>
-      <a href="tel:9026468481" class="contact-link">Call/WhatsApp</a>
+      <a href="mailto:pandeynilesh325a@gmail.com" class="contact-link">
+        <span style="color:var(--cyan)">✉</span> Email
+      </a>
+      <a href="https://github.com/nilesh03pandey" target="_blank" class="contact-link">
+        <span style="color:var(--cyan)">⌥</span> GitHub
+      </a>
+      <a href="https://linkedin.com/in/nilesh-pandey-ai-sec/" target="_blank" class="contact-link">
+        <span style="color:var(--cyan)">◈</span> LinkedIn
+      </a>
+      <a href="https://wa.me/919026468481" target="_blank" class="contact-link">
+        <span style="color:var(--cyan)">◎</span> WhatsApp
+      </a>
+    </div>
+
+    <!-- Profile cards -->
+    <div class="contact-cards">
+
+      <!-- Email -->
+      <a href="mailto:pandeynilesh325a@gmail.com" class="contact-profile-card">
+        <div class="cpc-avatar" style="border-color:rgba(0,245,255,0.4);background:rgba(0,245,255,0.06)">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00f5ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </div>
+        <div class="cpc-label">Email</div>
+        <div class="cpc-val">pandeynilesh325a<br>@gmail.com</div>
+        <div class="cpc-arrow">OPEN →</div>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/nilesh03pandey" target="_blank" class="contact-profile-card">
+        <div class="cpc-avatar" style="border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04)">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="rgba(200,216,232,0.9)">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </div>
+        <div class="cpc-label">GitHub</div>
+        <div class="cpc-val">nilesh03pandey</div>
+        <div class="cpc-arrow">OPEN →</div>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/nilesh-pandey-ai-sec/" target="_blank" class="contact-profile-card">
+        <div class="cpc-avatar" style="border-color:rgba(0,119,181,0.5);background:rgba(0,119,181,0.08)">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#0099d4">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </div>
+        <div class="cpc-label">LinkedIn</div>
+        <div class="cpc-val">nilesh-pandey-<br>ai-sec</div>
+        <div class="cpc-arrow">OPEN →</div>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/919026468481" target="_blank" class="contact-profile-card">
+        <div class="cpc-avatar" style="border-color:rgba(37,211,102,0.4);background:rgba(37,211,102,0.06)">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#25d366">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+        </div>
+        <div class="cpc-label">WhatsApp</div>
+        <div class="cpc-val">+91 902****481</div>
+        <div class="cpc-arrow">OPEN →</div>
+      </a>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="contact-footer">
+      <span class="contact-footer-text">Nilesh Pandey</span>
+      <div class="contact-footer-dot"></div>
+      <span class="contact-footer-text">AI · ML · LLM</span>
+      <div class="contact-footer-dot"></div>
+      <span class="contact-footer-text">VIT 2026</span>
+      <div class="contact-footer-dot"></div>
+      <span class="contact-footer-text">© 2025</span>
     </div>
   </div>
 </section>
