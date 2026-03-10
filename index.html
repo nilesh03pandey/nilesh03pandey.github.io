@@ -585,6 +585,181 @@
     text-transform: uppercase;
   }
 
+  /* ═══════════ CERTIFICATIONS ═══════════ */
+  #certifications {
+    padding: 6rem 2rem;
+    align-items: flex-start;
+    min-height: auto;
+  }
+  .cert-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .cert-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cert-card {
+    background: rgba(10, 22, 40, 0.65);
+    border: 1px solid rgba(0,245,255,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .cert-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cert-accent, var(--cyan)), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .cert-card:hover::after { opacity: 1; }
+  .cert-card:hover {
+    border-color: var(--cert-accent, var(--cyan));
+    box-shadow: 0 0 40px rgba(0,0,0,0.4), 0 0 30px color-mix(in srgb, var(--cert-accent, var(--cyan)) 15%, transparent);
+    transform: translateY(-4px);
+  }
+
+  /* Certificate image preview area */
+  .cert-preview {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+  .cert-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: brightness(0.75) saturate(0.85);
+    transition: filter 0.4s, transform 0.4s;
+    display: block;
+  }
+  .cert-card:hover .cert-preview img {
+    filter: brightness(0.9) saturate(1);
+    transform: scale(1.04);
+  }
+  .cert-preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(2,4,8,0.85) 100%);
+    pointer-events: none;
+  }
+  /* Fallback if image fails or not present */
+  .cert-preview-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: linear-gradient(135deg, rgba(0,245,255,0.04), rgba(0,0,0,0.2));
+  }
+
+  .cert-body {
+    padding: 1.4rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .cert-issuer-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .cert-issuer-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cert-accent, var(--cyan));
+    box-shadow: 0 0 8px var(--cert-accent, var(--cyan));
+    flex-shrink: 0;
+  }
+  .cert-issuer {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: var(--cert-accent, var(--cyan));
+    text-transform: uppercase;
+  }
+
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.35;
+    margin-bottom: 0.85rem;
+    flex: 1;
+  }
+
+  .cert-id-row {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(200,216,232,0.35);
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .cert-id-row span {
+    color: rgba(200,216,232,0.55);
+  }
+
+  .cert-verify-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cert-accent, var(--cyan));
+    border: 1px solid color-mix(in srgb, var(--cert-accent, var(--cyan)) 30%, transparent);
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  .cert-card:hover .cert-verify-btn {
+    background: color-mix(in srgb, var(--cert-accent, var(--cyan)) 8%, transparent);
+    border-color: var(--cert-accent, var(--cyan));
+    box-shadow: 0 0 16px color-mix(in srgb, var(--cert-accent, var(--cyan)) 20%, transparent);
+  }
+  .cert-verify-arrow {
+    transition: transform 0.3s;
+    display: inline-block;
+  }
+  .cert-card:hover .cert-verify-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Corner decoration */
+  .cert-corner {
+    position: absolute;
+    top: 0; right: 0;
+    width: 40px; height: 40px;
+    border-top: 1px solid var(--cert-accent, var(--cyan));
+    border-right: 1px solid var(--cert-accent, var(--cyan));
+    opacity: 0.25;
+    transition: opacity 0.4s;
+  }
+  .cert-card:hover .cert-corner { opacity: 0.6; }
+
   /* ═══════════ GITHUB STATS ═══════════ */
   #github {
     padding: 6rem 2rem;
@@ -902,12 +1077,13 @@
   <a href="#about">About</a>
   <a href="#projects">Work</a>
   <a href="#skills">Skills</a>
+  <a href="#certifications">Certs</a>
   <a href="#contact">Contact</a>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <section id="hero">
-  <div class="hero-eyebrow">// AI Engineer · RAG & LLM Systems · VIT 2026  </div>
+  <div class="hero-eyebrow">// AI Engineer · RAG &amp; LLM Systems · VIT 2026  </div>
   <div class="hero-name">
     <span class="line1 glitch" data-text="NILESH">NILESH</span>
     <span class="line2">PANDEY</span>
@@ -941,7 +1117,7 @@
       <p class="about-text">
         Ex Intern at <strong>Prxis Tech Solutions</strong>, engineered
         scalable AI infrastructure with Llama 3, FAISS, and cloud-native systems.
-        Grand Finalist & <strong>1st Place Healthcare</strong> at IIC 2024.
+        Grand Finalist &amp; <strong>1st Place Healthcare</strong> at IIC 2024.
       </p>
     </div>
     <div class="reveal">
@@ -1167,11 +1343,167 @@
   </div>
 </section>
 
+<!-- ═══ CERTIFICATIONS ═══ -->
+<section id="certifications">
+  <div class="cert-inner">
+    <div class="reveal">
+      <div class="section-label">// 05 — Certifications</div>
+      <h2 class="section-title">Verified <em>expertise</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="cert-grid">
+
+      <!-- Oracle OCI — Data Science Professional -->
+      <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=7BD11AB3AA1139834090AEAD4E4620C8CE1F221082B1F38BE38A3A45ACE45DCD"
+         target="_blank" rel="noopener"
+         class="cert-card reveal"
+         style="--cert-accent: #f80000;">
+        <div class="cert-corner"></div>
+        <div class="cert-preview">
+          <img src="OCI.png" alt="Oracle Data Science Professional Certificate"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.cert-preview-fallback').style.display='flex'">
+          <div class="cert-preview-overlay"></div>
+          <div class="cert-preview-fallback" style="display:none">🗄️</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <div class="cert-issuer-dot"></div>
+            <span class="cert-issuer">Oracle</span>
+          </div>
+          <div class="cert-name">Data Science Professional</div>
+          <div class="cert-id-row">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>OCI Certified · Verified Badge</span>
+          </div>
+          <div class="cert-verify-btn">
+            Verify Credential <span class="cert-verify-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- IBM — Generative AI -->
+      <a href="https://courses.ibmcep.cognitiveclass.ai/certificates/e8aa2dc4124b4030bff787037d09d348"
+         target="_blank" rel="noopener"
+         class="cert-card reveal"
+         style="--cert-accent: #0062ff; transition-delay: 0.1s;">
+        <div class="cert-corner"></div>
+        <div class="cert-preview">
+          <img src="IBM.png" alt="IBM Generative AI Certificate"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.cert-preview-fallback').style.display='flex'">
+          <div class="cert-preview-overlay"></div>
+          <div class="cert-preview-fallback" style="display:none">🤖</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <div class="cert-issuer-dot"></div>
+            <span class="cert-issuer">IBM</span>
+          </div>
+          <div class="cert-name">Generative AI</div>
+          <div class="cert-id-row">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>IBM CEP · <span>e8aa2dc4124b4030</span></span>
+          </div>
+          <div class="cert-verify-btn">
+            Verify Credential <span class="cert-verify-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- EC-Council — CEH v12 -->
+      <a href="https://aspen.eccouncil.org/VerifyBadge?type=certification&a=UG0uQDiNXPAJMK1MoGCOPGi2BqHi/J3OMmFcbJ4jEbs="
+         target="_blank" rel="noopener"
+         class="cert-card reveal"
+         style="--cert-accent: #00e676; transition-delay: 0.2s;">
+        <div class="cert-corner"></div>
+        <div class="cert-preview">
+          <img src="CEH.jpeg" alt="Certified Ethical Hacker v12 Certificate"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.cert-preview-fallback').style.display='flex'">
+          <div class="cert-preview-overlay"></div>
+          <div class="cert-preview-fallback" style="display:none">🔐</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <div class="cert-issuer-dot"></div>
+            <span class="cert-issuer">EC-Council</span>
+          </div>
+          <div class="cert-name">Certified Ethical Hacker v12</div>
+          <div class="cert-id-row">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Cert No · <span>ECC9680215374</span></span>
+          </div>
+          <div class="cert-verify-btn">
+            Verify Credential <span class="cert-verify-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Udemy — Transformers & NLP -->
+      <a href="https://www.udemy.com/certificate/UC-227bf3a5-c845-49ba-b449-5950196286b0/"
+         target="_blank" rel="noopener"
+         class="cert-card reveal"
+         style="--cert-accent: #a435f0; transition-delay: 0.3s;">
+        <div class="cert-corner"></div>
+        <div class="cert-preview">
+          <img src="UdemyDS.png" alt="Udemy Transformers and NLP Certificate"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.cert-preview-fallback').style.display='flex'">
+          <div class="cert-preview-overlay"></div>
+          <div class="cert-preview-fallback" style="display:none">🧠</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <div class="cert-issuer-dot"></div>
+            <span class="cert-issuer">Udemy</span>
+          </div>
+          <div class="cert-name">Data Science: Transformers &amp; Natural Language Processing</div>
+          <div class="cert-id-row">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>UC-<span>227bf3a5</span></span>
+          </div>
+          <div class="cert-verify-btn">
+            Verify Credential <span class="cert-verify-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Coursera — Bits and Bytes of Networking -->
+      <a href="https://coursera.org/share/34c614dd84a71a3b4cdf8d9bc41bf1b9"
+         target="_blank" rel="noopener"
+         class="cert-card reveal"
+         style="--cert-accent: #00b8d9; transition-delay: 0.4s; grid-column: span 1;">
+        <div class="cert-corner"></div>
+        <div class="cert-preview">
+          <img src="Networking.png" alt="Coursera Bits and Bytes of Networking Certificate"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.cert-preview-fallback').style.display='flex'">
+          <div class="cert-preview-overlay"></div>
+          <div class="cert-preview-fallback" style="display:none">🌐</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <div class="cert-issuer-dot"></div>
+            <span class="cert-issuer">Coursera · Google</span>
+          </div>
+          <div class="cert-name">Bits and Bytes of Networking</div>
+          <div class="cert-id-row">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Verified · <span>34c614dd84a71a3b</span></span>
+          </div>
+          <div class="cert-verify-btn">
+            Verify Credential <span class="cert-verify-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GITHUB STATS ═══ -->
 <!-- ═══ GITHUB STATS ═══ -->
 <section id="github">
   <div class="github-inner">
     <div class="reveal">
-      <div class="section-label" style="text-align:center">// 05 — GitHub</div>
+      <div class="section-label" style="text-align:center">// 06 — GitHub</div>
       <h2 class="section-title" style="text-align:center">The <em>code</em> speaks</h2>
     </div>
     <div class="github-stats-grid reveal">
@@ -1205,7 +1537,7 @@
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="contact-inner reveal">
-    <div class="section-label" style="text-align:center">// 06 — Contact</div>
+    <div class="section-label" style="text-align:center">// 07 — Contact</div>
     <div class="contact-lead">
       LET'S<br><em>CONNECT</em>
     </div>
@@ -1359,7 +1691,6 @@ function drawBg() {
     if (n.x < 0 || n.x > bgCanvas.width) n.vx *= -1;
     if (n.y < 0 || n.y > bgCanvas.height) n.vy *= -1;
 
-    // Mouse repulsion
     const dx = n.x - mouseX, dy = n.y - mouseY;
     const dist = Math.sqrt(dx*dx + dy*dy);
     if (dist < 120) {
@@ -1368,7 +1699,6 @@ function drawBg() {
     }
   });
 
-  // Draw connections
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const dx = nodes[i].x - nodes[j].x;
@@ -1386,7 +1716,6 @@ function drawBg() {
     }
   }
 
-  // Draw nodes
   nodes.forEach(n => {
     const pulse = Math.sin(n.pulse) * 0.5 + 0.5;
     bgCtx.beginPath();
@@ -1426,7 +1755,6 @@ function drawOrbits() {
     { r: Math.min(cx2, cy2) * 0.82, speed: 0.1, items: skillItems.slice(10), color:'#f9c74f' }
   ];
 
-  // Draw orbit paths
   rings.forEach(ring => {
     sctx.beginPath();
     sctx.arc(cx2, cy2, ring.r, 0, Math.PI * 2);
@@ -1437,7 +1765,6 @@ function drawOrbits() {
     sctx.setLineDash([]);
   });
 
-  // Draw center node
   const cp = Math.sin(t * 2) * 0.5 + 0.5;
   sctx.beginPath();
   sctx.arc(cx2, cy2, 8 + cp * 4, 0, Math.PI * 2);
@@ -1447,7 +1774,6 @@ function drawOrbits() {
   sctx.fill();
   sctx.shadowBlur = 0;
 
-  // Draw items on orbits
   rings.forEach(ring => {
     ring.items.forEach((item, idx) => {
       const baseAngle = (idx / ring.items.length) * Math.PI * 2;
@@ -1455,7 +1781,6 @@ function drawOrbits() {
       const nx = cx2 + Math.cos(a) * ring.r;
       const ny = cy2 + Math.sin(a) * ring.r;
 
-      // Connection line
       sctx.beginPath();
       sctx.strokeStyle = `${ring.color}20`;
       sctx.lineWidth = 0.5;
@@ -1463,7 +1788,6 @@ function drawOrbits() {
       sctx.lineTo(nx, ny);
       sctx.stroke();
 
-      // Node
       sctx.beginPath();
       sctx.arc(nx, ny, 4, 0, Math.PI * 2);
       sctx.fillStyle = ring.color;
@@ -1472,7 +1796,6 @@ function drawOrbits() {
       sctx.fill();
       sctx.shadowBlur = 0;
 
-      // Label
       sctx.font = '10px Share Tech Mono, monospace';
       sctx.fillStyle = ring.color;
       sctx.textAlign = 'center';
